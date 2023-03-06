@@ -1,5 +1,5 @@
 <configuration scan="true" scanPeriod="30 seconds">
-	<property name="DIR_BASE" value="/dev" />
+	<property name="DIR_BASE" value="/home/jboss" />
 	<property name="FILE_NAME" value="integration-open-shift-api.log" />
 
 	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
