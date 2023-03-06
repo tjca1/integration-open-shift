@@ -20,35 +20,22 @@ import br.com.integration.open.shift.repository.HostRepository;
  */
 @Service
 public class HostServiceImpl implements HostService {
-
 	static Logger logger = LoggerFactory.getLogger(HostServiceImpl.class);
-
 	@Autowired
 	private HostRepository hostRepository;
 
 	@Override
 	public Host create(HostFilter host) throws Exception {
-
-		logger.info("<<<<<<<<<<<<<new Host>>>>>>>>>>>>>>");
-
+		logger.info("<<<<<<<<<<<<<CREATE Host>>>>>>>>>>>>>>");
 		try {
 			return hostRepository.save(new Host(host.getName(), new Date(), null));
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
-
 	}
-
-	/**
-	 * Get Host.
-	 * 
-	 * @param id
-	 * @return Host if found.
-	 */
 	@Override
 	public Optional<Host> read(Long id) throws Exception {
-
-		logger.info("Reading Host by identification.");
+		logger.info("<<<<<<<<<<<<<READ Host>>>>>>>>>>>>>>");
 
 		try {
 
@@ -57,14 +44,10 @@ public class HostServiceImpl implements HostService {
 		} catch (Exception e) {
 			throw new Exception(e.getMessage());
 		}
-
 	}
-
 	@Override
 	public Host update(Long id, HostFilter filter) throws Exception {
-
-		logger.info("Updating Host by identification and Host details.");
-
+		logger.info("<<<<<<<<<<<<<UPDATE Host>>>>>>>>>>>>>>");
 		try {
 			Optional<Host> optHost = hostRepository.findById(id);
 			if (optHost.isPresent()) {
@@ -78,12 +61,9 @@ public class HostServiceImpl implements HostService {
 			throw new Exception(e.getMessage());
 		}
 	}
-
 	@Override
 	public boolean delete(Long id) throws Exception {
-
-		logger.info("Deleting Host by identification.");
-
+		logger.info("<<<<<<<<<<<<<DELETE Host>>>>>>>>>>>>>>");
 		try {
 			Optional<Host> Host = hostRepository.findById(id);
 			if (Host.isPresent()) {
