@@ -1,0 +1,42 @@
+
+logging: 
+  config: classpath:logback.xml
+  level: 
+    root: INFO
+    vcp.api.service: DEBUG
+    vcp: DEBUG
+
+server:
+  port: 8081
+
+management:
+  endpoint:
+    health:
+      show-details: always
+  endpoints:
+    web:
+      base-path: /
+
+spring:
+  main:
+    banner-mode: log
+    allow-bean-definition-overriding: true    
+  datasource:
+#LOCAL    
+    url: ${POSTGRES_URL:jdbc:postgresql://localhost/openshiftdb}
+    username: ${POSTGRES_CON_USERNAME:postgres}
+    password: ${POSTGRES_CON_PASSWORD:12345678}
+    driver-class-name: org.postgresql.Driver 
+    hikari:
+      maximum-pool-size: 5
+  jpa:
+    show-sql: false
+    properties:
+      hibernate:
+        jdbc:
+          batch_size: 50
+        order_inserts: true
+        order_updates: true
+        dialect: org.hibernate.dialect.PostgreSQL9Dialect
+        hbm2ddl:
+          auto: update

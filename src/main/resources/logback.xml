@@ -1,0 +1,36 @@
+<configuration scan="true" scanPeriod="30 seconds">
+	<property name="DIR_BASE" value="/Dev/vcp/logs/vcp-api-service/logs" />
+	<property name="FILE_NAME" value="vcp-api-service.log" />
+
+	<include resource="org/springframework/boot/logging/logback/defaults.xml" />
+	<property name="CONSOLE_LOG_PATTERN" value="%clr(%d{yyyy-MM-dd HH:mm:ss.SSS}){faint} %clr(${LOG_LEVEL_PATTERN:-%5p}) %clr(${PID:- }){magenta} %clr(-){faint} %clr(%-40.40logger{39}){cyan}%clr(:){faint}%m%n${LOG_EXCEPTION_CONVERSION_WORD:-%wEx}" />
+
+	<appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+		<file>${DIR_BASE}/${FILE_NAME}</file>
+		<rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+			<fileNamePattern>${DIR_BASE}/rolling/%d{yyyy-MM}/${FILE_NAME}.%d{yyyy-MM-dd}.%i.zip</fileNamePattern>
+			<maxHistory>30</maxHistory>
+			<maxFileSize>20MB</maxFileSize>
+			<totalSizeCap>20GB</totalSizeCap>
+		</rollingPolicy>
+		<encoder>
+			<pattern>${CONSOLE_LOG_PATTERN}</pattern>
+		</encoder>
+	</appender>
+	
+	<appender name="STDOUT" class="ch.qos.logback.core.ConsoleAppender">
+        <encoder>
+            <pattern>${CONSOLE_LOG_PATTERN}</pattern>
+        </encoder>
+    </appender>
+
+	<logger name="org.springframework.web.filter.CommonsRequestLoggingFilter">
+		<appender-ref ref="FILE" />
+	</logger>
+
+	<root level="INFO">
+		<appender-ref ref="STDOUT" />
+		<appender-ref ref="FILE" />
+	</root>
+
+</configuration>
