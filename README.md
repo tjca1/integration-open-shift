@@ -1,2 +1,3 @@
 # integration-open-shift
-Spring boot microservice for account rules.
+
+https://github.com/tjca1/Livraria/issues/6#issue-1612505253
